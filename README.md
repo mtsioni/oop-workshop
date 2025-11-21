@@ -18,8 +18,10 @@ classDiagram
         class FileHandler {
             +loadMedia()
             +saveMedia()
+            +deleteMedia()
             +loadUsers()
             +saveUsers()
+            +deleteUsers()
         }
     }
 
@@ -38,10 +40,6 @@ classDiagram
         class IReadable {
             <<interface>>
             +read()
-        }
-        class IWatchable {
-            <<interface>>
-            +watch()
         }
         class IExecutable {
             <<interface>>
@@ -146,7 +144,7 @@ classDiagram
     IDownloadable <|.. VideoGame
     
     IReadable <|.. EBook
-    IWatchable <|.. Movie
+    IPlayable <|.. Movie
     IPlayable <|.. Song
     IPlayable <|.. VideoGame
     IExecutable <|.. App
