@@ -31,19 +31,29 @@ classDiagram
         %% ------------------------------------------------
         class IDownloadable {
             <<interface>>
-            +download()
+            +Download()
         }
         class IPlayable {
             <<interface>>
-            +play()
+            +Play()
         }
         class IReadable {
             <<interface>>
-            +read()
+            +Read()
         }
         class IExecutable {
             <<interface>>
-            +execute()
+            +Execute()
+        }
+        class IViewable {
+            <<interface>>
+            +View()
+        }
+        class ICompletable{
+            <<interface>>
+            +bool Completed
+            +double CompletionProgress
+            +Complete (double newProgress)
         }
 
         %% ------------------------------------------------
@@ -51,38 +61,66 @@ classDiagram
         %% ------------------------------------------------
         class MediaItem {
             <<abstract>>
-            +String title
-            +double averageRating
-            +borrow()
-            +rate(int score)
-            +getDetails() String
+            +string Title
+            +bool Borrowed
+            +int Ratings
+            +string Details
+            +double AverageRating
+            +Borrow()
+            +Rate(int score)
         }
 
         class EBook {
-            +String author
-            +String isbn
-            +int pages
+            +string Author
+            +string Language
+            +string ISBN
+            +int Pages
+            +int YearOfPublication
         }
 
         class Movie {
-            +String director
-            +int durationMinutes
+            +string Director
+            +string Genre
+            +string FileType
+            +string Language
+            +int DurationMinutes
         }
 
         class Song {
-            +String artist
-            +String fileType
+            +string Composer
+            +string Singer
+            +string Genre
+            +string FileType
+            +string Language
+            +int DurationSeconds
         }
 
         class VideoGame {
-            +String platform
-            +boolean isCompleted
-            +complete()
+            +string Publisher
+            +string Platform
+            +string Genre
+            +int YearOfRelease
+            +boolean IsCompleted
         }
         
         class App {
-            +String version
-            +String os
+            +string Publisher
+            +string Version
+            +string Platfrorm
+            +int FilesizeMB
+        }
+        class Image {
+            +string Resolution
+            +string FileFormat
+            +int FilesizeMB
+            +DateTime DateTaken
+        }
+        class Podcast {
+            +int ReleaseYear
+            +string[] Hosts
+            +string[] Guests
+            +int EpisodeNumber
+            +string Language
         }
 
         %% ------------------------------------------------
@@ -132,6 +170,8 @@ classDiagram
     MediaItem <|-- Song
     MediaItem <|-- VideoGame
     MediaItem <|-- App
+    MediaItem <|-- Image
+    MediaItem <|-- Podcast
 
     User <|-- Borrower
     User <|-- Employee
@@ -142,12 +182,20 @@ classDiagram
     IDownloadable <|.. Movie
     IDownloadable <|.. Song
     IDownloadable <|.. VideoGame
+    IDownloadable <|.. App
+    IDownloadable <|.. Podcast
+    IDownloadable <|.. Image
     
     IReadable <|.. EBook
     IPlayable <|.. Movie
     IPlayable <|.. Song
     IPlayable <|.. VideoGame
+    IPlayable <|.. Podcast
     IExecutable <|.. App
+    IViewable <|.. EBook
+    IViewable <|.. Image
+    ICompletable <|.. Podcast
+    ICompletable <|.. VideoGame
 
     %% Composition / Association
     LibrarySystem o-- MediaItem : manages
