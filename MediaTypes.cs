@@ -120,16 +120,96 @@ namespace DomainLayer
             Console.Write("Playing not implemented");
         }
     }
-    public class Song : MediaItem
+    public class Song : MediaItem, IDownloadable, IPlayable
     {
-        
+        public string Composer { get; set; }
+        public string Singer { get; set; }
+        public string Genre { get; set; }
+        public string FileType { get; set; }
+        public string Language { get; set; }
+        public int DurationSeconds { get; set; }
+        public Song(string title, string details, string composer, string singer, string genre, string fileType, string language, int durationSeconds) : base(title, details)
+        {
+            Composer = composer;
+            Singer = singer;
+            Genre = genre;
+            FileType = fileType;
+            Language = language;
+            DurationSeconds = durationSeconds;
+        }
+        public void Download()
+        {
+            Console.Write("Dowloading not implemented");
+        }
+        public void Play()
+        {
+            Console.Write("Playing not implemented");
+        }
     }
-    public class Podcast : MediaItem
+    public class Podcast : MediaItem, IDownloadable, ICompletable, IPlayable
     {
-        
+        public int ReleaseYear { get; set; }
+        public string[] Hosts {get; set; }
+        public string[] Guests {get; set; }
+        public int NumberOfEpisodes { get; set; }
+        public string Language { get; set; }
+        public double CompletionProgress { get; set; }
+        public bool Completed { get; set; }
+        public Podcast(string title, string details, int releaseYear, string[] hosts, string[] guests, int numberOfEpisodes, string language) : base(title, details)
+        {
+            ReleaseYear = releaseYear;
+            Hosts = hosts;
+            Guests = guests;
+            NumberOfEpisodes = numberOfEpisodes;
+            Language = language;
+            CompletionProgress = 0;
+            Completed = false;
+        }
+        public void Download()
+        {
+            Console.Write("Dowloading not implemented");
+        }
+        public void Complete(double newProgress)
+        {
+            CompletionProgress += newProgress;
+            if (CompletionProgress >= 1)
+                Completed = true;
+        }
+        public void Play()
+        {
+            Console.Write("Playing not implemented");
+        }
     }
-    public class VideoGame : MediaItem
+    public class VideoGame : MediaItem, IDownloadable, ICompletable, IPlayable
     {
-        
+        public string Publisher { get; set; }
+        public string Platform { get; set; }
+        public string Genre { get; set; }
+        public int YearOfRelease { get; set; }
+        public double CompletionProgress { get; set; }
+        public bool Completed { get; set; }
+        public VideoGame(string title, string details, string publisher, string platform, string genre, int yearOfRelease) : base (title, details)
+        {
+            Publisher = publisher;
+            Platform = platform;
+            Genre = genre;
+            YearOfRelease = yearOfRelease;
+            CompletionProgress = 0;
+            Completed = false;
+        }
+        public void Download()
+        {
+            Console.Write("Dowloading not implemented");
+        }
+        public void Complete(double newProgress)
+        {
+            CompletionProgress += newProgress;
+            if (CompletionProgress >= 1)
+                Completed = true;
+        }
+        public void Play()
+        {
+            Console.Write("Playing not implemented");
+        }
     }
 }

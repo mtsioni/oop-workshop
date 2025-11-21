@@ -100,7 +100,6 @@ classDiagram
             +string Platform
             +string Genre
             +int YearOfRelease
-            +boolean IsCompleted
         }
         
         class App {
@@ -119,7 +118,7 @@ classDiagram
             +int ReleaseYear
             +string[] Hosts
             +string[] Guests
-            +int EpisodeNumber
+            +int NumberOfEpisodes
             +string Language
         }
 
